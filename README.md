@@ -46,7 +46,7 @@ Add the Bridgefy SDK to your Podfile and install it in your project as follows:
     target 'SDK test' do
     use_frameworks!
 
-    pod 'BridgefySDK'
+    pod 'BridgefySDK', :git => 'https://github.com/bridgefy/sdk-ios', :branch => 'main'
     end
     ```
 
