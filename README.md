@@ -46,7 +46,7 @@ Add the Bridgefy SDK to your Podfile and install it in your project as follows:
     target 'SDK test' do
     use_frameworks!
 
-    pod 'BridgefySDK', :git => 'https://github.com/bridgefy/sdk-ios', :branch => 'main'
+    pod 'BridgefySDK'
     end
     ```
 
@@ -115,8 +115,31 @@ do {
 The string **apiKey** represents a valid API key. An Internet connection is needed, at least for the first time to validate the license.
 The **delegate** is the class that will implement all the delegate methods from the BridgefySDK.
 
-### PropagationProfile
-The PropagationProfile parameter in the init method allows developers to define a series of properties and rules for the propagation of messages. It's an optional parameter with a default value of .standard.
+### Propagation Profiles
+
+```swift
+enum PropagationProfile {
+    case standard
+    case highDensityNetwork
+    case sparseNetwork
+    case longReach
+    case shortReach
+}
+```
+
+| **Profile** | **Hops limit** | **TTL(s)** | **Sharing Time** | **Maximum Propagation** | **Tracklist limit** |
+|---|---|---|---|---|---|
+| Standard | 100 | 86400 (1 d) | 15000 | 200 | 50 |
+| High Density Environment | 50 | 3600 (1 h) | 10000 | 50 | 50 |
+| Sparse Environment | 100 | 302400 (3.5 d) | 10000 | 250 | 50 |
+| Long Reach | 250 | 604800 (7 d) | 15000 | 1000 | 50 |
+| Short Reach | 0 | 0 | 0 | 0 | 0 |
+
+- **Hops limit:** The maximum number of hops a message can get. Each time a message is forwarded, is considered a hop.
+- **TTL:** Time to live, is the maximum amount of time a message can be propagated since its creation.
+- **Sharing time:** The maximum amount of time a message will be kept for forwarding.
+- **Maximum propagation:** The maximum number of times a message will be forwarded from a device.
+- **Tracklist limit:** The maximum number of UUID's stored in an array to prevent sending the message to a peer which already forwarded the message.
 
 ### Start
 
