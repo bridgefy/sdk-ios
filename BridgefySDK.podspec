@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'Commercial', :file => 'LICENSE.md' }
   s.author           = { 'Bridgefy' => 'contact@bridgefy.me' }
   s.platform         = :ios, '13.0'
-  s.source           = { :git => 'https://github.com/bridgefy/sdk-ios', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/bridgefy/sdk-ios.git', :tag => s.version.to_s }
   s.xcconfig     =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/BridgefySDK/"' }
   s.requires_arc = true
   s.source_files = 'BridgefySDK.xcframework/ios-arm64/BridgefySDK.framework/Headers/*.{h}'
