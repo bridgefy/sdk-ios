@@ -96,14 +96,13 @@ The BridgefySDK requires permission to use the Bluetooth antenna of the devices 
 
 ### Initialization
 
-The init method initializes the Bridgefy SDK with an API key and propagation profile. The delegate parameter is required and should be an object that conforms to the `BridgefyDelegate` protocol. The verboseLogging parameter is optional and enables more detailed logging if set to true.
+The init method initializes the Bridgefy SDK with an API key. The delegate parameter is required and should be an object that conforms to the `BridgefyDelegate` protocol. The verboseLogging parameter is optional and enables more detailed logging if set to true.
 
 The following code shows how to start the SDK (using your API key) and how to assign the delegate.
 
 ```swift
 do {
       bridgefy = try Bridgefy(withApiKey: apiKey,
-                              propagationProfile: PropagationProfile,
                               delegate: BridgefyDelegate,
                               verboseLogging: Bool)
 } catch {
@@ -114,6 +113,32 @@ do {
 
 The string **apiKey** represents a valid API key. An Internet connection is needed, at least for the first time to validate the license.
 The **delegate** is the class that will implement all the delegate methods from the BridgefySDK.
+
+### Start
+
+After initializing the SDK, you should call the `start()` function to have the SDK's services running.
+
+```swift
+bridgefy.start(withUserId: UUID?,
+               andPropagationProfile: PropagationProfile)
+```
+
+The optional UUID **userId** is the id that the SDK will use to identify the user. If a nil value is passed, the SDK will randomly assign a UUID.
+The **propagationProfile** value is the profile the SDK will use to propagate messages through the mesh.
+
+Once the service is started, the following delegate function is called:
+
+```swift
+func bridgefyDidStart(with userId: UUID)
+```
+
+The **userId** is the id used to identify the current user/device in the BridgefySDK.
+
+In the case an error occurs while starting the BridgefySDK, the following delegate function is called:
+
+```swift
+func bridgefyDidFailToStart(with error: BridgefyError)
+```
 
 ### Propagation Profiles
 
@@ -140,24 +165,6 @@ enum PropagationProfile {
 - **Sharing time:** The maximum amount of time a message will be kept for forwarding.
 - **Maximum propagation:** The maximum number of times a message will be forwarded from a device.
 - **Tracklist limit:** The maximum number of UUID's stored in an array to prevent sending the message to a peer which already forwarded the message.
-
-### Start
-
-After initializing the SDK, you should call the `start()` function to have the SDK's services running.
-
-Once the service is started, the following delegate function is called:
-
-```swift
-func bridgefyDidStart(with userId: UUID)
-```
-
-The **userId** is the id used to identify the current user/device in the BridgefySDK.
-
-In the case an error occurs while starting the BridgefySDK, the following delegate function is called:
-
-```swift
-func bridgefyDidFailToStart(with error: BridgefyError)
-```
 
 ### Stop
 
