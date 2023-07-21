@@ -180,6 +180,20 @@ After the service is stopped, the following delegate function is called:
 func bridgefyDidStop()
 ```
 
+### Destroy Session
+
+Call this method when you want to terminate the current Bridgefy session and destroy all related data:
+
+```swift
+  func destroySession()
+```
+
+After the session is destroy, the following delegate function is called:
+
+```swift
+func bridgefyDidDestroySession()
+```
+
 ### Nearby peer detection
 
 The following method is invoked when a peer has established a connection:
@@ -266,3 +280,17 @@ The mode used to propagate a message through nearby devices:
 Direct transmission is a mechanism used to deliver packets to a user that is nearby or visible (a connection has been detected).
 
 Mesh transmission is a mechanism used to deliver offline packets even when the receiving user isn’t nearby or visible. It can be achieved by taking advantage of other nearby peers; these receive the package, hold it, and forward it to other peers trying to find the receiver.
+
+### Fingerprint
+
+```swift
+public func fingerprint(for userId: UUID) throws -> BridgefyFingerprint? 
+```
+
+This method is used to generate a fingerprint for the secure connection established with a specific user identified by their UUID. A fingerprint is a unique identifier associated with a user's secure connection. It allows users to recognize and communicate securely with each other.
+
+```swift
+public func isFingerprintValid(_ fingerprintData: Data, for userId: UUID) throws -> Bool 
+```
+
+This method is used to verify the validity of a fingerprint for a particular user identified by their UUID. It allows users to ensure that they are securely communicating with the intended recipient by validating their fingerprint.
