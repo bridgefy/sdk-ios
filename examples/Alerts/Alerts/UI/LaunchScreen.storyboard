@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JQV-La-E2v">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Jdj-eN-KnC">
+            <objects>
+                <viewController id="JQV-La-E2v" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QiV-Lc-BSP"/>
+                        <viewControllerLayoutGuide type="bottom" id="gSD-tj-5xs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IaK-lp-xOJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GradientBackground" translatesAutoresizingMaskIntoConstraints="NO" id="nmG-ld-O2q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bridgefy Alerts System" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwK-4l-mEo">
+                                <rect key="frame" x="42.5" y="317.5" width="290.5" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bridgefy Inc. 2018. All Rights Reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cx-Po-uPx">
+                                <rect key="frame" x="60.5" y="630" width="254" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cwK-4l-mEo" firstAttribute="centerX" secondItem="IaK-lp-xOJ" secondAttribute="centerX" id="80N-cZ-A1x"/>
+                            <constraint firstItem="nmG-ld-O2q" firstAttribute="centerX" secondItem="IaK-lp-xOJ" secondAttribute="centerX" id="AAH-OC-zbB"/>
+                            <constraint firstItem="nmG-ld-O2q" firstAttribute="top" secondItem="IaK-lp-xOJ" secondAttribute="top" id="G43-WP-Tkn"/>
+                            <constraint firstItem="nmG-ld-O2q" firstAttribute="leading" secondItem="IaK-lp-xOJ" secondAttribute="leading" id="Qz9-Bn-ypb"/>
+                            <constraint firstItem="gSD-tj-5xs" firstAttribute="top" secondItem="3Cx-Po-uPx" secondAttribute="bottom" constant="20" id="S7E-nB-kMB"/>
+                            <constraint firstItem="nmG-ld-O2q" firstAttribute="centerY" secondItem="IaK-lp-xOJ" secondAttribute="centerY" id="T5U-5j-mLT"/>
+                            <constraint firstItem="3Cx-Po-uPx" firstAttribute="centerX" secondItem="IaK-lp-xOJ" secondAttribute="centerX" id="XDN-Aj-3th"/>
+                            <constraint firstItem="gSD-tj-5xs" firstAttribute="top" secondItem="nmG-ld-O2q" secondAttribute="bottom" id="eVm-OX-WxF"/>
+                            <constraint firstAttribute="trailing" secondItem="nmG-ld-O2q" secondAttribute="trailing" id="epK-wc-mh4"/>
+                            <constraint firstItem="cwK-4l-mEo" firstAttribute="centerY" secondItem="IaK-lp-xOJ" secondAttribute="centerY" id="u4A-JP-DMm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l0S-so-fdu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GradientBackground" width="1" height="1920"/>
+    </resources>
+</document>
