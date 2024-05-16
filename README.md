@@ -1,3 +1,4 @@
+
 <p align="center">
     <img src="https://www.gitbook.com/cdn-cgi/image/width=256,dpr=2,height=40,fit=contain,format=auto/https%3A%2F%2F3290834949-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F5XKIMMP6VF2l9XuPV80l%252Flogo%252Fd78nQFIysoU2bbM5fYNP%252FGroup%25203367.png%3Falt%3Dmedia%26token%3Df83a642d-8a9a-411f-9ef4-d7189a4c5f0a" />
 </p>
@@ -33,9 +34,12 @@ The Bridgefy SDK provides a set of tools and APIs that developers can use to inc
 3. [Usage](#usage)
    - [Initialization](#initialization)
    - [Start](#start)
+   - [Connection Methods](#connection-methods)
    - [Propagation Profiles](#propagation-profiles)
    - [Stop](#stop)
    - [Destroy Session](#destroy-session)
+   - [Nearby peer detection](#nearby-peer-detection)
+   - [Connection Behavior](#connection-behavior)
    - [Sending data](#sending-data)
    - [Receiving Data](#receiving-data)
 4. [Secure connections](#secure-connections)
@@ -115,6 +119,18 @@ The BridgefySDK requires permission to use the Bluetooth antenna of the devices 
 <img src="img/Permissions.png"/>
 </p>
 
+If you want to connect via Wi-Fi, additional configurations are required: 
+-  **NSLocalNetworkUsageDescription**: Apps that use the local network must provide a usage string in their Info.plist with this key.
+-   **NSBonjourServices**: Apps that use Bonjour must also declare the services they browse, using this key. For this key, you need to specify the service type Bonjour transport protocol. It will look pretty much like this:
+
+> _[myservicetype]._tcp
+
+So for example, if I have a service type of “message-peer” . I could add it  like this:
+
+<p align=center>
+<img src="img/Permissions2.png"/>
+</p>
+
 ## Usage
 
 ### Initialization
@@ -143,11 +159,13 @@ After initializing the SDK, you should call the `start()` function to have the S
 
 ```swift
 bridgefy.start(withUserId: UUID?,
-               andPropagationProfile: PropagationProfile)
+               andPropagationProfile: PropagationProfile
+               using: ConnectionMethod  = .all)
 ```
 
-The optional UUID **userId** is the id that the SDK will use to identify the user. If a nil value is passed, the SDK will randomly assign a UUID.
-The **propagationProfile** value is the profile the SDK will use to propagate messages through the mesh.
+-   The optional **UUID userId** is the ID that the SDK will use to identify the user. If a `nil` value is passed, the SDK will randomly assign a UUID.
+-   The **propagationProfile** value is the profile the SDK will use to propagate messages through the mesh.
+-   The **connectionMethod** value specifies the preferred method of connection for the SDK.
 
 Once the service is started, the following delegate function is called:
 
@@ -162,6 +180,30 @@ In the case an error occurs while starting the BridgefySDK, the following delega
 ```swift
 func bridgefyDidFailToStart(with error: BridgefyError)
 ```
+
+###  Connection Methods
+
+```swift
+ enum  ConnectionMethod { 
+     case bluetooth 
+     case wifi(serviceType: String)
+     case all(serviceType: String)
+ }
+```
+
+-   **bluetooth**: Connect using Bluetooth Low Energy (BLE).
+-   **wifi**: Connect using Wi-Fi (Multipeer Connectivity).
+-   **all**: Connect using both Bluetooth and Wi-Fi.
+
+**Note**: The `serviceType` passed to the `wifi` and `all` cases should match the service type previously added in the Info.plist. This ensures that the SDK can properly establish connections using the specified service types. For example, if your service type in the Info.plist is `_message-peer._tcp`, you would initialize the SDK like this:
+
+```swift
+bridgefy.start(withUserId: UUID?,
+               andPropagationProfile: PropagationProfile,
+               using: .all(serviceType: "_message-peer._tcp"))
+```
+
+Make sure the `serviceType` you use here is the same as the one you specified in the Info.plist under the `NSBonjourServices` key.
 
 ### Propagation Profiles
 
@@ -222,18 +264,54 @@ func bridgefyDidDestroySession()
 The following method is invoked when a peer has established a connection:
 
 ```swift
-func bridgefyDidConnect(with userId: UUID)
+func  bridgefyDidConnect(with  userId: UUID, type: MessageOperatorType)
 ```
 
-**userId**: Identifier of the user that has established a connection.
+-   **userId**: Identifier of the user that has established a connection.
+-   **type**: The type of message operator through which the connection was established
 
 When a peer is disconnected(out of range), the following method will be invoked:
 
 ```swift
-func bridgefyDidDisconnect(from userId: UUID)
+func  bridgefyDidDisconnect(from  userId: UUID, type: MessageOperatorType)
 ```
 
-**userId**: Identifier of the disconnected user.
+-   **userId**: Identifier of the disconnected user.
+-   **type**: The type of message operator through which the disconnection occurred.
+
+When the connection type of a user changes, the following method is called:
+```swift
+func bridgefyDidChangeConnectionType(for userId: UUID,
+                                     from previousConnectionType: MessageOperatorType,
+                                     to newConnectionType: MessageOperatorType)
+
+```
+
+-   **userId**: The ID of the user whose connection type changed.
+-   **previousConnectionType**: The previous connection type before the change.
+-   **newConnectionType**: The new connection type after the change.
+
+When a user is in the process of reconnecting, the following method is called:
+```swift
+`func  bridgefyIsReconnecting(userId:  UUID)
+```
+
+
+### Connection Behavior
+
+#### 1. Change from Bluetooth to Wi-Fi
+
+In a situation where peers initially connect via Bluetooth and then switch to Wi-Fi, the following process is triggered:
+
+-   **Change of Connection Type**: The function **`bridgefyDidChangeConnectionType`** is called to notify the delegate that the connection has changed from Bluetooth to Wi-Fi. This function provides details about the user whose connection has changed.
+
+#### 2. Reconnection After Wi-Fi Disconnection
+
+When a device connected via Wi-Fi loses its connection, the following reconnection process is triggered:
+
+-   **Reconnection via Bluetooth**: The function **`bridgefyIsReconnecting`** is called to notify the delegate that the device is in the process of reconnecting. During this time, the SDK attempts to establish a connection using Bluetooth as an alternative to the lost Wi-Fi connection.
+-   **Change of Connection Type**: If the reconnection via Bluetooth is successful, the function **`bridgefyDidChangeConnectionType`** is invoked to notify the delegate that the connection has changed from Wi-Fi to Bluetooth.
+-   **Failed Reconnection**: If the reconnection via Bluetooth fails, the function **`bridgefyDidDisconnect`** is called, providing details about the disconnected peer.
 
 ### Sending data
 
