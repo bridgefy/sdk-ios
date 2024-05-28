@@ -346,6 +346,17 @@ func bridgefyDidFailSendingMessage(with messageId: UUID,
                                    withError error: BridgefyError)
 ```
 
+The following method is used to send the contents from a URL object to the specified peer. The URL can be either a local file URL or a web URL.
+
+```swift
+ func  sendResource(at  resourceURL: URL, 
+                   toUser  userId: UUID) throws -> UUID 
+```
+
+**resourceURL**: A file or HTTP URL. 
+**userId**: UUID of the receiving user.
+ **messageId**: Unique identifier related to the message.
+
 ### Receiving Data
 
 When a packet has been received, the following method will be invoked:
@@ -359,6 +370,28 @@ func bridgefyDidReceiveData(_ data: Data,
 **data**: Received data.
 **messageId**: The id of the message that was received
 **transmissionMode**: The transmission mode used to propagate a message
+
+
+When a new resource is received, the following method will be invoked:
+```swift
+func  bridgefyDidReceiveResource(at  localURL: URL, 
+                                with  messageId: UUID, 
+                                fromUserId  userId: UUID)
+```
+**localURL**: The local URL where the received resource is stored.  
+**messageId**: The id of the message associated with the received resource. 
+ **userId**: The id of the user who sent the resource.
+
+When the reception of a resource starts, the following method will be invoked:
+
+```swift
+func  bridgefyDidStartReceiveResource(with  messageId: UUID,
+                                      fromUserId  userId: UUID, 
+                                      progress: Double)
+```
+**messageId**: The id of the message associated with the resource being received. 
+**userId**: The id of the user sending the resource. 
+**progress**: The progress of the resource reception.
 
 **Transmission Modes**:
 
