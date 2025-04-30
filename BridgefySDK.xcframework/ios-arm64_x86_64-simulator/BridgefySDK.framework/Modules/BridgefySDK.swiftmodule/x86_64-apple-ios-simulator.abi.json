@@ -5158,65 +5158,121 @@
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/MessageOperators\/BLE\/BLEManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 33005,
+      "offset": 33290,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/MessageOperators\/BLE\/BLEManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 33016,
+      "offset": 33301,
       "length": 10,
       "value": "1"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/MessageOperators\/BLE\/BLEManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 33036,
+      "offset": 33321,
       "length": 6,
       "value": "2"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/MessageOperators\/BLE\/BLEManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 33052,
+      "offset": 33337,
       "length": 10,
       "value": "3"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
       "kind": "IntegerLiteral",
-      "offset": 144,
+      "offset": 151,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
       "kind": "IntegerLiteral",
-      "offset": 155,
-      "length": 24,
+      "offset": 162,
+      "length": 15,
       "value": "1"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
       "kind": "IntegerLiteral",
-      "offset": 189,
-      "length": 16,
+      "offset": 187,
+      "length": 18,
       "value": "2"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
       "kind": "IntegerLiteral",
       "offset": 215,
-      "length": 15,
+      "length": 20,
       "value": "3"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
       "kind": "IntegerLiteral",
-      "offset": 240,
-      "length": 22,
+      "offset": 245,
+      "length": 20,
       "value": "4"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 275,
+      "length": 24,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 309,
+      "length": 15,
+      "value": "6"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 334,
+      "length": 25,
+      "value": "7"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 369,
+      "length": 16,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 395,
+      "length": 24,
+      "value": "9"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 429,
+      "length": 16,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 455,
+      "length": 15,
+      "value": "11"
+    },
+    {
+      "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Enums\/LicenseError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 480,
+      "length": 22,
+      "value": "12"
     },
     {
       "filePath": "\/Users\/francisco\/Desktop\/bridgefy-sdk-ios\/BridgefySDK\/Sources\/Modules\/License\/Models\/ValidationData.swift",
