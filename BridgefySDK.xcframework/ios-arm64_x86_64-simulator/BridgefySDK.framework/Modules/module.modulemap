@@ -1,11 +1,3 @@
-framework module BridgefySDK {
-  umbrella header "BridgefySDK.h"
-  export *
-
-  module * { export * }
-}
-
-module BridgefySDK.Swift {
-  header "BridgefySDK-Swift.h"
-  requires objc
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:08e7eddf17d73f84a774116b7468fbf90527982233e87de0036ca3f5f1559725
+size 180

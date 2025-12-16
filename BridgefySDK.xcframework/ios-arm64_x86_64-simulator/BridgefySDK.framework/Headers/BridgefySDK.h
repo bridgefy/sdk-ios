@@ -1,15 +1,3 @@
-//
-//  Copyright © 2021 Bridgefy Inc. - All Rights Reserved
-//
-
-#import <Foundation/Foundation.h>
-
-//! Project version number for BridgefySDK.
-FOUNDATION_EXPORT double BridgefySDKVersionNumber;
-
-//! Project version string for BridgefySDK.
-FOUNDATION_EXPORT const unsigned char BridgefySDKVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <BridgefySDK/PublicHeader.h>
-
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:7e5f1d59d6e7d17ac62cf47d93a905e9cd5a621f7671ae6d1228d7d6f1faba22
+size 446
