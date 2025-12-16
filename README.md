@@ -172,16 +172,18 @@ enum PropagationProfile {
     case sparseNetwork
     case longReach
     case shortReach
+    case realTime
 }
 ```
 
-| **Profile** | **Hops limit** | **TTL(s)** | **Sharing Time** | **Maximum Propagation** | **Tracklist limit** |
-|---|---|---|---|---|---|
-| Standard | 100 | 86400 (1 d) | 15000 | 200 | 50 |
-| High Density Environment | 50 | 3600 (1 h) | 10000 | 50 | 50 |
-| Sparse Environment | 100 | 302400 (3.5 d) | 10000 | 250 | 50 |
-| Long Reach | 250 | 604800 (7 d) | 15000 | 1000 | 50 |
-| Short Reach | 50 | 1800 | 10000 | 50 | 50 |
+| **Profile** | **Maximum Hops** | **TTL (seconds)** | **Sharing Time (seconds)** | **Maximum Propagation** | **Tracklist Limit** |
+|------------|-----------------:|------------------:|---------------------------:|------------------------:|--------------------:|
+| Standard | 50 | 43,200 (12 h) | 8,000 | 150 | 64 |
+| High Density Network | 30 | 1,800 (30 min) | 5,000 | 30 | 100 |
+| Sparse Network | 100 | 302,400 (3.5 d) | 5,000 | 250 | 64 |
+| Long Reach | 20 | 259,200 (3 d) | 10,000 | 300 | 64 |
+| Short Reach | 20 | 900 (15 min) | 5,000 | 25 | 25 |
+| Real Time | 15 | 300 (5 min) | 300 | 20 | 64 |
 
 - **Hops limit:** The maximum number of hops a message can get. Each time a message is forwarded, is considered a hop.
 - **TTL:** Time to live, is the maximum amount of time a message can be propagated since its creation.
