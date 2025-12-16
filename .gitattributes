@@ -1,0 +1,2 @@
+BridgefySDK.xcframework filter=lfs diff=lfs merge=lfs -text
+BridgefySDK.xcframework/** filter=lfs diff=lfs merge=lfs -text
