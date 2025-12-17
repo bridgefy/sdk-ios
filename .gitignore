@@ -85,4 +85,5 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-.DS_Store
+.DS_StoreBridgefySDK.xcframework/
+*.DS_Store
