@@ -85,4 +85,10 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+# macOS
 .DS_Store
+*.DS_Store
+
+# Binary artifacts (DO NOT commit)
+BridgefySDK.xcframework/
+BridgefySDK.xcframework.zip
