@@ -16,8 +16,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "BridgefySDK",
-            url: "https://github.com/FranciscoMkdir/SDK-iOS-binary/releases/download/1.1.5/BridgefySDK.xcframework.zip",
-            checksum: "2ac78a311db30e1b85f800fb484ddc870deed13f0b03c75248309c981f7c583e"
+            url: "https://github.com/FranciscoMkdir/SDK-iOS-binary/releases/download/1.1.6/BridgefySDK.xcframework.zip",
+            checksum: "ec631747bda7c7fdbf858e3d0bc713b13df12f061070369dcd3632ad3034b20f"
         )
     ]
 )
