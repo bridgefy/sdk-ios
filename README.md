@@ -360,6 +360,31 @@ public var isLiveActivityActive: Bool
 
 Returns true if the Bridgefy Live Activity is currently active; otherwise, false. This property is only available on iOS 26 and later.
 
+### Live Activity UI attributes
+
+The SDK exposes `BLEActivityAttributes`, the `ActivityAttributes` conforming type used to drive the Live Activity's UI. Use it in your Widget Extension to read and render the activity's state:
+
+```swift
+@available(iOS 26, *)
+public struct BLEActivityAttributes: ActivityAttributes {
+    public init() {}
+    
+    public struct ContentState: Codable, Hashable {
+        public var connectedDevices: Int
+        
+        public init(connectedDevices: Int) {
+            self.connectedDevices = connectedDevices
+        }
+    }
+}
+```
+
+`BLEActivityAttributes` has no fixed properties of its own; all the dynamic state lives in `ContentState`:
+
+- **connectedDevices**: The number of peers currently connected to the mesh network. The SDK updates this value as devices connect and disconnect, and your Widget Extension's `ActivityConfiguration` can use it to render the Live Activity's lock screen and Dynamic Island UI.
+
+Your Widget Extension should declare a `Widget` conforming to `ActivityConfiguration<BLEActivityAttributes>` to present this data, following Apple's [ActivityKit](https://developer.apple.com/documentation/ActivityKit) and [WidgetKit](https://developer.apple.com/documentation/WidgetKit) documentation.
+
 ## Secure connections
 
 Part of Bridgefy's functionality is its ability to provide a secure connection for sending data within a mesh network. To ensure the privacy and security of sensitive data, Bridgefy SDK employs encryption techniques. Encryption involves transforming data into an unreadable format, which can only be deciphered by authorized recipients who possess the correct decryption key.
