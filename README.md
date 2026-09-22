@@ -38,12 +38,13 @@ The Bridgefy SDK provides a set of tools and APIs that developers can use to inc
    - [Destroy Session](#destroy-session)
    - [Sending data](#sending-data)
    - [Receiving Data](#receiving-data)
-4. [Secure connections](#secure-connections)
+4. [Background operation (Live Activity)](#background-operation-live-activity)
+5. [Secure connections](#secure-connections)
    - [Established secure connection](#established-secure-connection)
    - [Recommendations for using a secure connection](#recommendations-for-using-a-secure-connection)
    - [Fingerprint](#fingerprint)
-5. [Supported Devices](#supported-devices)
-6. [Contact & Support](#contact--support)
+6. [Supported Devices](#supported-devices)
+7. [Contact & Support](#contact--support)
 
 ## Installation
 
@@ -306,6 +307,59 @@ Direct transmission is a mechanism used to deliver packets to a user that is nea
 
 Mesh transmission is a mechanism used to deliver offline packets even when the receiving user isn’t nearby or visible. It can be achieved by taking advantage of other nearby peers; these receive the package, hold it, and forward it to other peers trying to find the receiver.
 
+## Background operation (Live Activity)
+
+Starting on iOS 26, the BridgefySDK can use a Live Activity to keep foreground-equivalent Bluetooth scanning privileges while your app is in the background. Without this, CBCentralManager is subject to the usual iOS background scanning restrictions once the app is no longer active.
+
+This behavior is opt-in and controlled by the supportsBackgroundScanning parameter of start(withUserId:andPropagationProfile:supportsBackgroundScanning:):
+
+```swift
+bridgefy.start(withUserId: nil,
+               andPropagationProfile: .standard,
+               supportsBackgroundScanning: true)               
+```
+
+- When supportsBackgroundScanning is set to true, the SDK automatically starts a Live Activity as part of initialization. If the Live Activity launches successfully, iOS 26 and later let the underlying CBCentralManager keep foreground-equivalent scanning capabilities while the app is in the background.
+- When set to false (the default), no Live Activity is started, and standard background scanning restrictions apply.
+- On iOS 18 and earlier, this parameter has no effect — standard background scanning restrictions always apply regardless of its value.
+
+#### Requirements
+To support this feature, your app must:
+
+1. Enable the Live Activities capability in your target's entitlements.
+2. Declare NSSupportsLiveActivities as YES in your Info.plist.
+3. Provide a Widget Extension that implements the Live Activity UI using ActivityKit and WidgetKit.
+
+#### Delegate events
+Two new delegate methods notify your app about the state of the Live Activity. Both have a default empty implementation, so conforming to them is optional:
+
+```swift
+/// This function is called when the Live Activity was successfully started.
+func bridgefyDidStartLiveActivity()
+
+/// This function is called when the user dismissed the Live Activity.
+func bridgefyDidDismissLiveActivity()
+```
+
+#### Restarting the Live Activity
+
+If the user dismisses the Live Activity, you can restart it with:
+```swift
+@available(iOS 26, *)
+public func restartLiveActivity()
+```
+Important: This method has no effect on iOS 25 and earlier.
+
+#### Checking Live Activity status
+
+You can check whether the Live Activity is currently active with:
+```swift
+@available(iOS 26, *)
+public var isLiveActivityActive: Bool
+```
+
+Returns true if the Bridgefy Live Activity is currently active; otherwise, false. This property is only available on iOS 26 and later.
+
 ## Secure connections
 
 Part of Bridgefy's functionality is its ability to provide a secure connection for sending data within a mesh network. To ensure the privacy and security of sensitive data, Bridgefy SDK employs encryption techniques. Encryption involves transforming data into an unreadable format, which can only be deciphered by authorized recipients who possess the correct decryption key.
@@ -325,6 +379,7 @@ When node is connected you can try to establishing a secure connection with foll
 ````swift
  public func establishSecureConnection(with userId: UUID) 
 ````
+
 When the establishment is done, the secure connection is notified on delegate:
 ````swift
 func bridgefyDidEstablishSecureConnection(with userId: UUID)
