@@ -381,7 +381,7 @@ public struct BLEActivityAttributes: ActivityAttributes {
 
 `BLEActivityAttributes` has no fixed properties of its own; all the dynamic state lives in `ContentState`:
 
-- **connectedDevices**: The number of peers currently connected to the mesh network. The SDK updates this value as devices connect and disconnect, and your Widget Extension's `ActivityConfiguration` can use it to render the Live Activity's lock screen and Dynamic Island UI.
+- **connectedDevices**: The number of peers currently connected. The SDK updates this value as devices connect and disconnect, and your Widget Extension's `ActivityConfiguration` can use it to render the Live Activity's lock screen and Dynamic Island UI.
 
 Your Widget Extension should declare a `Widget` conforming to `ActivityConfiguration<BLEActivityAttributes>` to present this data, following Apple's [ActivityKit](https://developer.apple.com/documentation/ActivityKit) and [WidgetKit](https://developer.apple.com/documentation/WidgetKit) documentation.
 
