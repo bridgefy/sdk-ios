@@ -339,6 +339,12 @@ func bridgefyDidStartLiveActivity()
 
 /// This function is called when the user dismissed the Live Activity.
 func bridgefyDidDismissLiveActivity()
+
+/// This function is called when the Live Activity failed to be created or started.
+///
+/// - Parameter error: The underlying error thrown by ActivityKit (e.g. `ActivityAuthorizationError`)
+///   explaining why the activity could not be created.
+func bridgefyDidFailToStartLiveActivity(withError error: Error)
 ```
 
 #### Restarting the Live Activity
