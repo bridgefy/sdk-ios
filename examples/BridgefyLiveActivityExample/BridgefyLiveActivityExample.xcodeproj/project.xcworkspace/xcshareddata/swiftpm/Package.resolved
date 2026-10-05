@@ -1,0 +1,15 @@
+{
+  "originHash" : "561bc559cea8813f8af4896c7fc2afbe3aab9611bfeaf435c3f66483e532c11b",
+  "pins" : [
+    {
+      "identity" : "sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bridgefy/sdk-ios.git",
+      "state" : {
+        "revision" : "e8a3a57eb9c48e50b128ea72ee85fcb70508676e",
+        "version" : "1.4.0"
+      }
+    }
+  ],
+  "version" : 3
+}
